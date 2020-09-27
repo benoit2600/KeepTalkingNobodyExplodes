@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link href="{{ url_for('static', filename='css/materialize.min.css') }}" media="screen,projection" rel="stylesheet"
+          type="text/css"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Menu principal</title>
+    {% block header %}{% endblock %}
+
+</head>
+<body>
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a class="brand-logo" href="/">lalère</a>
+        <a class="sidenav-trigger" data-target="mobile-demo" href="#"><i class="material-icons">menu</i></a>
+
+        <ul class="right hide-on-med-and-down" id="nav-mobile">
+            <li><a href="/screenGame">Screen Game</a></li>
+            <li><a href="/simon">Simon</a></li>
+            <li><a href="/fils">Fils</a></li>
+            <li><a href="/bouton">Bouton</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="/screenGame">Screen Game</a></li>
+    <li><a href="/simon">Simon</a></li>
+    <li><a href="/fils">Fils</a></li>
+    <li><a href="/bouton">Bouton</a></li>
+</ul>
+
+
+{% if gv.error %}
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content ">
+                <span class="card-title">Erreur</span>
+                <p>{% if gv.serialOK %}
+                    {% else %}
+                <p style="color: red;"> Connexion Arduino : KO !</p>
+                {% endif %}
+
+
+                <span> {{gv.error}} </span>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% block content %}{% endblock %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, "");
+  });
+
+</script>
+<!--JavaScript at end of body for optimized loading-->
+<script src="{{ url_for('static', filename='js/materialize.min.js') }}" type="text/javascript"></script>
+</body>
+</html>

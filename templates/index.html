@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="10;URL=/"/>
+
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content">
+                <span class="card-title">Info générale</span>
+                <span >Chrono : {{gv.chrono[0]}}{{gv.chrono[1]}}:{{gv.chrono[2]}}{{gv.chrono[3]}} <br></span>
+                <span >Nombre d'erreur : {{gv.nbErreur}} <br><br></span>
+
+                <span >Numéro série : {{gv.serialNumber}} <br></span>
+                <span >nombre pile : {{gv.nbPile}} <br></span>
+                <span >Mention FRK : {{gv.mentionFRK}} <br></span>
+                <span >Mention CAR : {{gv.mentionCAR}} <br></span>
+
+                <ul>
+                    <li>Etat module :</li>
+                    <li>Simon : {{gv.moduleWin[0]}},</li>
+                    <li>Game Screen : {{gv.moduleWin[1]}}</li>
+                    <li>Fils : {{gv.moduleWin[2]}}</li>
+                    <li>Symbole : {{gv.moduleWin[3]}}</li>
+                    <li>Bouton : {{gv.moduleWin[4]}}</li>
+                </ul>
+            </div>
+            <div class="card-action">
+                <a href="?chrono=start">start</a>
+                <a href="?chrono=pause">pause</a>
+                <a href="?chrono=p5">+5min</a>
+                <a href="?chrono=p1">+1min</a>
+                <a href="?chrono=m1">-1min</a>
+                <a href="?chrono=m5">-5min</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h3> Nb Erreur : {{gv.nbErreur}}</h3>
+
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content ">
+                <span class="card-title">Victoire / Défaite</span>
+                <form action="" class="Win Loose" method="POST">
+                    <div class="form-example">
+                        <div class="row">
+                            <div class="col s6">
+                                <ul>
+
+                                    <li>
+                                        <button class="btn green" name="moduleWin,0" type="submit" value="1">Win
+                                            Simon
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn green" name="moduleWin,1" type="submit" value="1">Win
+                                            Screen Game
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn green" name="moduleWin,2" type="submit" value="1">Win
+                                            Fils
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn green" name="symboleStep" type="submit" value="4">Win
+                                            Symbole
+                                        </button>
+                                    </li>
+
+                                    <li>
+                                        <button class="btn green" name="moduleWin,4" type="submit" value="1">Win
+                                            Bouton
+                                        </button>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="col s6">
+                                <ul>
+                                    <li>
+                                        <button class="btn red" name="moduleWin,0" type="submit" value="0">Loose
+                                            Simon
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn red" name="moduleWin,1" type="submit" value="0">Loose
+                                            Screen Game
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn red" name="moduleWin,2" type="submit" value="0">Loose
+                                            Fils
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn red" name="symboleStep" type="submit" value="0">Loose
+                                            Symbole
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn red" name="moduleWin,4" type="submit" value="0">Loose
+                                            Bouton
+                                        </button>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content">
+                <span class="card-title">Fils</span>
+                <span >Nombre de fils : {{gv.nbFilConnecte}} <br><br></span>
+                <span >Logique : {{gv.logiqueMsg}} <br></span>
+                <br><span >Fil à déco : {{gv.filADeco + 1}}</span>
+                <br><br><span >Fil déconnecté : {{gv.filDeco}}</span>
+                <div class="card-action">
+                    <a href="?fils=reset">reset nb erreur</a>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content">
+                <span class="card-title">Symbole</span>
+                <span >Ordre : {{gv.symboleOrdre}} (0: haut gauche, 1 haut droit, 2 bas droit, 3 bas gauche) <br><br></span>
+                <span >Etape : {{gv.symboleStep}} <br></span>
+                <span >Nombre Erreur : {{gv.symboleErreur}} <br></span>
+                <div class="card-action">
+                    <a href="?symbole=reset">reset etape</a>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content">
+                <span class="card-title">Bouton</span>
+                <span >modèle : {{gv.modeleBtn}} (0: bleu/Annuler  1: jaune/ Exploser  2: blanc  3: rouge/Maintenir) <br><br></span>
+                <span >Couleur Bande (RGB) : {{gv.boutonBande}} <br></span>
+                <span >Liste Couleur : {{gv.boutonListeCouleur}} <br></span>
+                <span >Chiffre chrono relache : {{gv.BandeNumChrono[gv.boutonListeCouleur[0]|string]}} (si rien affiché, -> 3)<br></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card ">
+            <div class="card-content">
+                <span class="card-title">Simon</span>
+                {% if gv.simonStep[0] < 5%}
+                    <span >Next step : {{ gv.simonSol[gv.simonVoyelle][gv.nbErreur][gv.simonLum[gv.simonStep[0]][gv.simonStep[1]]] }} (0: haut , 1 droit, 2 bas , 3 gauche) <br><br></span>
+                {% endif %}
+                <span >Etape : {{gv.simonStep}} <br></span>
+                <span >Voyelle ? : {{gv.simonVoyelle}} <br></span>
+                <span >Nb erreur total : {{gv.nbErreur}} <br></span>
+                <span >Voyelle ? : {{gv.simonVoyelle}} <br></span>
+                <div class="card-action">
+                    <a href="?simon=reset">reset Simon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Screen Game</title>
+</head>
+<body>
+
+
+{% if gv.error %}
+<span> {{gv.error}} </span>
+{% endif %}
+
+<h2> Niveau : {{gv.calcTour}}</h2>
+
+<h3> Mot Etape 1 : {{gv.motEtape1 }}</h3>
+
+<h3> Mot Etape 2 : {{gv.motEtape2}}</h3>
+<h3> Place mot Etape 2 : {{gv.PlaceMotEtape2}}</h3>
+
+<h3> Mot Victoire : {{gv.motVictoire}}</h3>
+<h3> Place mot Victoire : {{gv.placeMotVictoire}}</h3>
+<h3> Liste mots affichés : {{gv.calcMotBtns}}</h3>
+
+
+<form action="" method="POST" class="Win Loose">
+  <div class="form-example">
+       <ul>
+        <li>
+            <button type="submit" name="calcTour", value="0">set Niveau 0</button>
+            <button type="submit" name="calcTour", value="1">set Niveau 1</button>
+            <button type="submit" name="calcTour", value="2">set Niveau 2</button>
+            <button type="submit" name="calcTour", value="3">set Niveau 3</button>
+            <button type="submit" name="calcTour", value="4">set Niveau 4</button>
+        </li>
+        </ul>
+       <ul>
+        <li>
+            <button type="submit" name="refresh", value="1">Refresh</button>
+            <button type="submit" name="win", value="1">Win Screen Game</button>
+            <button type="submit" name="moduleWin,1", value="0">Loose Screen Game</button>
+        </li>
+        </ul>
+  </div>
+</form>
+
+
+
+</body>
+</html>
